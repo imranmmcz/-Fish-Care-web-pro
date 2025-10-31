@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Care - বাংলাদেশের মাছ চাষীদের সহায়ক</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font (Hind Siliguri for Bangla) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Apply the Bangla font */
+        body, h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, select, textarea {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        /* Custom style for active tab */
+        .tab-active {
+            border-bottom-color: #2563EB; /* blue-600 */
+            color: #2563EB;
+            font-weight: 600;
+        }
+        /* Hide sections by default */
+        .page-content {
+            display: none;
+        }
+        /* Show the active page */
+        .page-content.active {
+            display: block;
+        }
+        /* Simple transition for page change */
+        .page-content {
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600">
+                <a href="#" data-nav="page-home">Fish Care</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-5">
+                <a href="#" data-nav="page-home" class="nav-link text-gray-700 hover:text-blue-600">হোম</a>
+                <a href="#" data-nav="page-market" class="nav-link text-gray-700 hover:text-blue-600">দৈনিক বাজার দর</a>
+                <a href="#" data-nav="page-guides-list" class="nav-link text-gray-700 hover:text-blue-600">চাষ পরামর্শ</a>
+                <a href="#" data-nav="page-diseases-list" class="nav-link text-gray-700 hover:text-blue-600">রোগ ব্যবস্থাপনা</a>
+                <a href="#" data-nav="page-calculator" class="nav-link text-gray-700 hover:text-blue-600">ক্যালকুলেটর</a>
+                <a href="#" data-nav="page-species" class="nav-link text-gray-700 hover:text-blue-600">প্রজাতি তথ্য</a>
+                <a href="#" data-nav="page-login" id="nav-login" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">লগইন</a>
+                <a href="#" data-nav="page-dashboard" id="nav-dashboard" class="hidden bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">ড্যাশবোর্ড</a>
+            </div>
+        </nav>
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg pb-3">
+            <a href="#" data-nav="page-home" class="nav-link block px-4 py-2 text-gray-700 hover:bg-gray-100">হোম</a>
+            <a href="#" data-nav="page-market" class="nav-link block px-4 py-2 text-gray-700 hover:bg-gray-100">দৈনিক বাজার দর</a>
+            <a href="#" data-nav="page-guides-list" class="nav-link block px-4 py-2 text-gray-700 hover:bg-gray-100">চাষ পরামর্শ</a>
+            <a href="#" data-nav="page-diseases-list" class="nav-link block px-4 py-2 text-gray-700 hover:bg-gray-100">রোগ ব্যবস্থাপনা</a>
+            <a href="#" data-nav="page-calculator" class="nav-link block px-4 py-2 text-gray-700 hover:bg-gray-100">ক্যালকুলেটর</a>
+            <a href="#" data-nav="page-species" class="nav-link block px-4 py-2 text-gray-700 hover:bg-gray-100">প্রজাতি তথ্য</a>
+            <a href="#" data-nav="page-login" id="nav-login-mobile" class="nav-link block px-4 py-2 text-gray-700 hover:bg-gray-100">লগইন</a>
+            <a href="#" data-nav="page-dashboard" id="nav-dashboard-mobile" class="nav-link hidden block px-4 py-2 text-green-600 hover:bg-gray-100">ড্যাশবোর্ড</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="app-container" class="container mx-auto p-4 min-h-screen">
+
+        <!-- Page: Home -->
+        <section id="page-home" class="page-content active">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg shadow-xl p-8 md:p-16 text-center">
+                <h1 class="text-3xl md:text-5xl font-bold mb-4">টেকসই মাছ চাষের বিশ্বস্ত সহায়ক</h1>
+                <p class="text-lg md:text-xl mb-8">টেকসই, লাভজনক ও বিজ্ঞানসম্মত মাছ চাষের সব তথ্য—এক জায়গায়।</p>
+                <!-- Search Bar -->
+                <div class="max-w-2xl mx-auto">
+                    <div class="relative">
+                        <input type="search" class="w-full p-4 rounded-full text-gray-800 border-2 border-transparent focus:border-blue-300 focus:outline-none" placeholder="কী খুঁজছেন? যেমন—“মনোসেক্স তেলাপিয়া খাদ্য”, “সাদা দাগ রোগ”, “শীতকালের চাষ”">
+                        <button class="absolute right-0 top-0 mt-3 mr-3 bg-blue-700 text-white px-6 py-2 rounded-full hover:bg-blue-800">অনুসন্ধান</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 mt-8">
+                <a href="#" data-nav="page-guides-list" class="quick-link-card">
+                    <h3 class="font-semibold text-lg">মাছ চাষ পরামর্শ</h3>
+                </a>
+                <a href="#" data-nav="page-diseases-list" class="quick-link-card">
+                    <h3 class="font-semibold text-lg">রোগ ব্যবস্থাপনা</h3>
+                </a>
+                <a href="#" data-nav="page-seasonal" class="quick-link-card">
+                    <h3 class="font-semibold text-lg">মৌসুমি পরামর্শ</h3>
+                </a>
+                <a href="#" data-nav="page-species" class="quick-link-card">
+                    <h3 class="font-semibold text-lg">প্রজাতি তথ্যভান্ডার</h3>
+                </a>
+                <a href="#" data-nav="page-calculator" class="quick-link-card">
+                    <h3 class="font-semibold text-lg">পুকুর ক্যালকুলেটর</h3>
+                </a>
+                <a href="#" data-nav="page-diagnostician" class="quick-link-card">
+                    <h3 class="font-semibold text-lg">রোগ নির্ণয়কারী</h3>
+                </a>
+                <a href="#" data-nav="page-market" class="quick-link-card">
+                    <h3 class="font-semibold text-lg">দৈনিক বাজার দর</h3>
+                </a>
+                <a href="#" data-nav="page-contact" class="quick-link-card">
+                    <h3 class="font-semibold text-lg">যোগাযোগ</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- Page: Daily Market Price -->
+        <section id="page-market" class="page-content">
+            <h2 class="text-3xl font-bold mb-6 text-center">দৈনিক বাজার দর</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
+                <!-- Location Selection -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label for="division-select" class="block text-sm font-medium text-gray-700 mb-1">বিভাগ</label>
+                        <select id="division-select" class="w-full p-2 border border-gray-300 rounded-md">
+                            <option value="">-- বিভাগ বাছুন --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="district-select" class="block text-sm font-medium text-gray-700 mb-1">জেলা</label>
+                        <select id="district-select" class="w-full p-2 border border-gray-300 rounded-md" disabled>
+                            <option value="">-- জেলা বাছুন --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="upazila-select" class="block text-sm font-medium text-gray-700 mb-1">উপজেলা</label>
+                        <select id="upazila-select" class="w-full p-2 border border-gray-300 rounded-md" disabled>
+                            <option value="">-- উপজেলা বাছুন --</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="fetch-prices-btn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700" disabled>
+                    বাজার দর দেখুন
+                </button>
+
+                <!-- Price Display Area -->
+                <div id="price-display-area" class="mt-8 hidden">
+                    <h3 class="text-2xl font-semibold mb-4">
+                        <span id="selected-location-name"></span> এর বাজার দর
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4">সর্বশেষ আপডেট: <span id="update-time"></span></p>
+                    <div classs="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">প্রজাতি</th>
+                                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">ন্যূনতম দাম (৳/কেজি)</th>
+                                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">সর্বোচ্চ দাম (৳/কেজি)</th>
+                                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">গড় দাম (৳/কেজি)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="price-table-body">
+                                <!-- Mock data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Specialist Info -->
+                    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <h4 class="text-lg font-semibold text-blue-800">বিশেষজ্ঞের পরামর্শ নিন</h4>
+                        <p class="text-gray-700">ফিশ স্পেশালিস্ট: <span id="specialist-name"></span></p>
+                        <p class="text-gray-700">মোবাইল: <span id="specialist-phone"></span></p>
+                    </div>
+                </div>
+
+                <!-- No Data Message -->
+                <div id="no-price-data" class="mt-8 text-center text-gray-500 hidden">
+                    <p>দুঃখিত, এই এলাকার জন্য কোনো বাজার দরের তথ্য পাওয়া যায়নি।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Guides List -->
+        <section id="page-guides-list" class="page-content">
+            <h2 class="text-3xl font-bold mb-6 text-center">মাছ চাষ পরামর্শ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Guide cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Page: Guide Detail (Template) -->
+        <section id="page-guide-detail" class="page-content">
+            <button data-nav="page-guides-list" class="mb-4 text-blue-600 hover:underline">&larr; সকল পরামর্শে ফিরে যান</button>
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 id="guide-detail-title" class="text-3xl font-bold mb-4"></h2>
+                <div id="guide-detail-content" class="prose max-w-none text-gray-700 leading-relaxed">
+                    <!-- Dynamic content goes here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Diseases List -->
+        <section id="page-diseases-list" class="page-content">
+            <h2 class="text-3xl font-bold mb-6 text-center">মাছের রোগ ব্যবস্থাপনা</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
+                <!-- Tabs -->
+                <div class="border-b border-gray-200 mb-6">
+                    <nav id="disease-tabs" class="flex flex-wrap -mb-px space-x-4 md:space-x-8" aria-label="Tabs">
+                        <!-- Disease tabs will be dynamically inserted here -->
+                    </nav>
+                </div>
+                <!-- Tab Content -->
+                <div id="disease-content-area">
+                    <!-- Dynamic content goes here -->
+                </div>
+                <!-- Disclaimer -->
+                <div class="mt-6 p-4 bg-yellow-50 border border-yellow-300 rounded-lg text-yellow-800 text-sm">
+                    <strong>দায়স্বীকার:</strong> ডোজ ও কার্যকারিতা পানি মান, তাপমাত্রা, প্রডাক্ট-স্ট্রেংথ ও প্রজাতিভেদে ভিন্ন হতে পারে। যেকোনো রাসায়নিক/অ্যান্টিবায়োটিক ব্যবহারের আগে স্থানীয় মৎস্য অফিস/ভেট বিশেষজ্ঞের পরামর্শ নিন এবং অনুমোদিত পণ্যই ব্যবহার করুন।
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Disease Diagnostician -->
+        <section id="page-diagnostician" class="page-content">
+            <h2 class="text-3xl font-bold mb-6 text-center">রোগ নির্ণয়কারী (টুল)</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 max-w-3xl mx-auto">
+                <!-- Step 1: Symptoms -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-3">ধাপ ১: প্রধান লক্ষণ বাছাই করুন (একাধিক হতে পারে)</h3>
+                    <div id="symptoms-list" class="space-y-2">
+                        <!-- Checkboxes will be inserted here -->
+                    </div>
+                </div>
+                <!-- Step 2: Water Quality -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-3">ধাপ ২: পানির মান (ঐচ্ছিক)</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <input type="number" id="diag-ph" placeholder="pH" class="form-input">
+                        <input type="number" id="diag-do" placeholder="DO (mg/L)" class="form-input">
+                        <input type="number" id="diag-temp" placeholder="তাপমাত্রা (°C)" class="form-input">
+                        <input type="number" id="diag-ammonia" placeholder="অ্যামোনিয়া (mg/L)" class="form-input">
+                    </div>
+                </div>
+                <!-- Step 3: Diagnose Button -->
+                <button id="diagnose-btn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-lg">
+                    সম্ভাব্য রোগ দেখুন
+                </button>
+                <!-- Step 4: Results -->
+                <div id="diagnose-results" class="mt-8 hidden">
+                    <h3 class="text-2xl font-semibold mb-4">ধাপ ৩: ফলাফল ও করণীয়</h3>
+                    <div id="diagnose-output" class="space-y-4">
+                        <!-- Diagnosis results will be shown here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Pond Calculator -->
+        <section id="page-calculator" class="page-content">
+            <h2 class="text-3xl font-bold mb-6 text-center">পুকুর ব্যবস্থাপনা ক্যালকুলেটর</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Inputs -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold">পুকুরের তথ্য দিন</h3>
+                        <div>
+                            <label for="pond-length" class="form-label">পুকুরের দৈর্ঘ্য (মিটার)</label>
+                            <input type="number" id="pond-length" class="form-input">
+                        </div>
+                        <div>
+                            <label for="pond-width" class="form-label">প্রস্থ (মিটার)</label>
+                            <input type="number" id="pond-width" class="form-input">
+                        </div>
+                        <div>
+                            <label for="pond-depth" class="form-label">গড় গভীরতা (মিটার)</label>
+                            <input type="number" id="pond-depth" class="form-input">
+                        </div>
+                        <div>
+                            <label for="pond-ph" class="form-label">পানির pH (ঐচ্ছিক)</label>
+                            <input type="number" id="pond-ph" step="0.1" class="form-input" placeholder="যেমন: 6.5">
+                        </div>
+                        <div>
+                            <label for="pond-biomass" class="form-label">বর্তমান মোট বায়োমাস (কেজি, ঐচ্ছিক)</label>
+                            <input type="number" id="pond-biomass" class="form-input" placeholder="যেমন: 500">
+                        </div>
+                        <button id="calculate-pond-btn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-lg">
+                            হিসাব করুন
+                        </button>
+                    </div>
+                    <!-- Outputs -->
+                    <div id="calculator-results" class="space-y-4 bg-gray-50 p-4 rounded-lg border hidden">
+                        <h3 class="text-xl font-semibold text-center">ফলাফল ও পরামর্শ</h3>
+                        <div id="calc-output-area" class="text-gray-700 space-y-3">
+                            <!-- Results go here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Species Database -->
+        <section id="page-species" class="page-content">
+            <h2 class="text-3xl font-bold mb-6 text-center">প্রজাতি তথ্যভান্ডার</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="table-header">প্রজাতি</th>
+                            <th class="table-header">বৃদ্ধি হার (আনুমানিক)</th>
+                            <th class="table-header">আদর্শ pH</th>
+                            <th class="table-header">DO (mg/L)</th>
+                            <th class="table-header">NH3 (mg/L, সর্বোচ্চ)</th>
+                            <th class="table-header">তাপমাত্রা (°C)</th>
+                            <th class="table-header">খাদ্যাভ্যাস</th>
+                            <th class="table-header">বাজার চাহিদা</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Data from prompt -->
+                        <tr>
+                            <td class="table-cell">ইলিশ (Hilsa)</td>
+                            <td class="table-cell">প্রাকৃতিক মজুদভিত্তিক; চাষ সীমিত</td>
+                            <td class="table-cell">7.5–8.5</td>
+                            <td class="table-cell">≥5</td>
+                            <td class="table-cell">≤0.02</td>
+                            <td class="table-cell">24–30</td>
+                            <td class="table-cell">প্ল্যাঙ্কটন ফিডার</td>
+                            <td class="table-cell">অত্যন্ত উচ্চ</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell">রুই (Rohu)</td>
+                            <td class="table-cell">800–1200g, 10–12 মাস</td>
+                            <td class="table-cell">7.0–8.0</td>
+                            <td class="table-cell">≥5</td>
+                            <td class="table-cell">≤0.02</td>
+                            <td class="table-cell">25–31</td>
+                            <td class="table-cell">সর্বভুক</td>
+                            <td class="table-cell">উচ্চ</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell">কাতলা (Catla)</td>
+                            <td class="table-cell">1.0–1.5kg, 10–12 মাস</td>
+                            <td class="table-cell">7.0–8.0</td>
+                            <td class="table-cell">≥5</td>
+                            <td class="table-cell">≤0.02</td>
+                            <td class="table-cell">25–31</td>
+                            <td class="table-cell">উপরিস্তরের ফিডার</td>
+                            <td class="table-cell">উচ্চ</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell">পাবদা (Pabda)</td>
+                            <td class="table-cell">60–100g, 4–6 মাস</td>
+                            <td class="table-cell">7.0–8.0</td>
+                            <td class="table-cell">≥5</td>
+                            <td class="table-cell">≤0.02</td>
+                            <td class="table-cell">25–30</td>
+                            <td class="table-cell">পোকাভুক</td>
+                            <td class="table-cell">উচ্চ</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell">তেলাপিয়া (Tilapia)</td>
+                            <td class="table-cell">600–800g, 4–6 মাস</td>
+                            <td class="table-cell">6.8–8.5</td>
+                            <td class="table-cell">≥5</td>
+                            <td class="table-cell">≤0.02</td>
+                            <td class="table-cell">25–32</td>
+                            <td class="table-cell">সর্বভুক</td>
+                            <td class="table-cell">খুব উচ্চ</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell">পাঙ্গাস (Pangasius)</td>
+                            <td class="table-cell">1.0–1.5kg, 6–8 মাস</td>
+                            <td class="table-cell">7.0–8.0</td>
+                            <td class="table-cell">≥5</td>
+                            <td class="table-cell">≤0.02</td>
+                            <td class="table-cell">26–31</td>
+                            <td class="table-cell">সর্বভুক/পেলেট</td>
+                            <td class="table-cell">খুব উচ্চ</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell">শিং</td>
+                            <td class="table-cell">100–150g, 5–6 মাস</td>
+                            <td class="table-cell">7.0–8.0</td>
+                            <td class="table-cell">≥5</td>
+                            <td class="table-cell">≤0.02</td>
+                            <td class="table-cell">25–30</td>
+                            <td class="table-cell">মাংসাশী-প্রবণ</td>
+                            <td class="table-cell">উচ্চ</td>
+                        </tr>
+                        <tr>
+                            <td class="table-cell">মাগুর</td>
+                            <td class="table-cell">150–200g, 5–6 মাস</td>
+                            <td class="table-cell">7.0–8.0</td>
+                            <td class="table-cell">≥5</td>
+                            <td class="table-cell">≤0.02</td>
+                            <td class="table-cell">25–30</td>
+                            <td class="table-cell">মাংসাশী-প্রবণ</td>
+                            <td class="table-cell">উচ্চ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Page: Seasonal Advice -->
+        <section id="page-seasonal" class="page-content">
+            <h2 class="text-3xl font-bold mb-6 text-center">মৌসুমি পরামর্শ</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 max-w-3xl mx-auto space-y-6">
+                <!-- Seasonal sections -->
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">১) পোনা ছাড়ার আগে (প্রি-সিজন)</h3>
+                    <p>পুকুর শুকানো/কাদা সাফ, চুন প্রয়োগ (pH অনুযায়ী), বেঞ্চ কাটা/জলজ আগাছা নিয়ন্ত্রণ। জৈব সার দিয়ে প্রাকৃতিক খাদ্য তৈরি; গেট/জাল মেরামত।</p>
+                </div>
+                <hr>
+                <div>
+                    <h3 class="text-xl font-semibold text-red-700 mb-2">২) গরম/প্রাক-বর্ষা (তাপমাত্রা বেশি)</h3>
+                    <p>অক্সিজেন কমে যেতে পারে: রাত/ভোরে এয়ারেশন, ফিড কিছুটা কমানো। অ্যামোনিয়া/নাইট্রাইট টেস্ট বাড়ান; পানিবদল পরিকল্পনা।</p>
+                </div>
+                <hr>
+                <div>
+                    <h3 class="text-xl font-semibold text-green-700 mb-2">৩) বর্ষা</h3>
+                    <p>প্লাবন/জল পালিয়ে যাওয়ার ঝুঁকি: বাধ মজবুত, ওভারফ্লো নেট। রোগ ছড়ায়: বায়োসিকিউরিটি, নতুন পোনা কোয়ারেন্টাইন।</p>
+                </div>
+                <hr>
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-2">৪) শীত</h3>
+                    <p>খাওয়ার ইচ্ছে কমে: ফিড রেট ২০–৪০% কমানো; দুপুরে খাওয়ান। সূর্যালোক ঢোকে এমন জায়গায় পানি গভীর রাখুন; গ্রীনহাউস/পলিথিন শেড বিবেচনা।</p>
+                </div>
+                <hr>
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-700 mb-2">৫) আহরণের আগে</h3>
+                    <p>বাজারদর যাচাই; বরফ/পরিবহন প্রস্তুতি; মাছ না খাওয়ানো ৮–১২ ঘণ্টা (stress কমে)।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Contact -->
+        <section id="page-contact" class="page-content">
+            <h2 class="text-3xl font-bold mb-6 text-center">যোগাযোগ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-semibold mb-4">আপনার বার্তা পাঠান</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label for="contact-name" class="form-label">নাম</label>
+                            <input type="text" id="contact-name" class="form-input" required>
+                        </div>
+                        <div>
+                            <label for="contact-mobile" class="form-label">মোবাইল</label>
+                            <input type="tel" id="contact-mobile" class="form-input" required>
+                        </div>
+                        <div>
+                            <label for="contact-email" class="form-label">ইমেইল (ঐচ্ছিক)</label>
+                            <input type="email" id="contact-email" class="form-input">
+                        </div>
+                        <div>
+                            <label for="contact-message" class="form-label">বার্তা/প্রশ্ন</label>
+                            <textarea id="contact-message" rows="4" class="form-input" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-lg">
+                            পাঠান
+                        </button>
+                    </form>
+                    <div id="contact-success" class="hidden mt-4 text-green-600 font-semibold">
+                        আপনার বার্তা সফলভাবে পাঠানো হয়েছে।
+                    </div>
+                </div>
+                <!-- Contact Info -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-semibold mb-4">যোগাযোগের তথ্য</h3>
+                    <div class="space-y-4 text-lg">
+                        <p><strong>ইমেইল:</strong> support@fishcare.com.bd</p>
+                        <p><strong>ফোন:</strong> 01978865277</p>
+                        <p><strong>সময়:</strong> রবি–বৃহস্পতি, সকাল ৯টা–সন্ধ্যা ৬টা</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Login -->
+        <section id="page-login" class="page-content">
+            <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8 mt-10">
+                <h2 class="text-3xl font-bold mb-6 text-center">লগইন করুন</h2>
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <label for="login-username" class="form-label">ইউজারনেম / মোবাইল</label>
+                        <input type="text" id="login-username" class="form-input" required>
+                    </div>
+                    <div>
+                        <label for="login-password" class="form-label">পাসওয়ার্ড</label>
+                        <input type="password" id="login-password" class="form-input" required>
+                    </div>
+                    <div>
+                        <label for="login-role" class="form-label">আপনি কি?</label>
+                        <select id="login-role" class="form-input">
+                            <option value="farmer">চাষী (Farmer)</option>
+                            <option value="seller">বিক্রেতা (Seller)</option>
+                            <option value="admin">এডমিন (Admin)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-lg">
+                        লগইন
+                    </button>
+                    <p id="login-error" class="text-red-600 text-sm hidden">ভুল ইউজারনেম বা পাসওয়ার্ড।</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Page: Dashboard (Farmer) -->
+        <section id="page-dashboard" class="page-content">
+            <h2 class="text-3xl font-bold mb-6">ড্যাশবোর্ড (<span id="user-role-display"></span>)</h2>
+            
+            <!-- Dashboard Tabs -->
+            <div class="border-b border-gray-200 mb-6">
+                <nav id="dashboard-tabs" class="flex flex-wrap -mb-px space-x-4 md:space-x-8" aria-label="Tabs">
+                    <!-- Tabs will be inserted by JS -->
+                </nav>
+            </div>
+
+            <!-- Dashboard Content Area -->
+            <div id="dashboard-content">
+                <!-- Tab: Market Price Update (All users) -->
+                <div id="dash-tab-market" class="dashboard-tab-content">
+                    <div class="bg-white rounded-lg shadow-md p-6 max-w-lg mx-auto">
+                        <h3 class="text-2xl font-semibold mb-4">বাজার দর আপডেট করুন</h3>
+                        <form id="market-update-form" class="space-y-4">
+                            <!-- Location will be pre-filled from user profile -->
+                            <p><strong>এলাকা:</strong> <span id="user-location-display"></span> (আপনার প্রোফাইল থেকে)</p>
+                            <div>
+                                <label for="market-fish-type" class="form-label">মাছের প্রজাতি</label>
+                                <input type="text" id="market-fish-type" class="form-input" placeholder="যেমন: রুই">
+                            </div>
+                            <div>
+                                <label for="market-price" class="form-label">দাম (প্রতি কেজি)</label>
+                                <input type="number" id="market-price" class="form-input" placeholder="যেমন: 300">
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                আপডেট করুন
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Tab: Stock Management (Farmer only) -->
+                <div id="dash-tab-stock" class="dashboard-tab-content hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Add Stock Form -->
+                        <div class="lg:col-span-1">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-2xl font-semibold mb-4">স্টক যোগ/আপডেট করুন</h3>
+                                <form id="stock-form" class="space-y-4">
+                                    <div>
+                                        <label for="stock-fish-type" class="form-label">মাছের প্রজাতি</label>
+                                        <input type="text" id="stock-fish-type" class="form-input" placeholder="যেমন: তেলাপিয়া">
+                                    </div>
+                                    <div>
+                                        <label for="stock-fish-size" class="form-label">সাইজ ক্যাটাগরি</label>
+                                        <select id="stock-fish-size" class="form-input">
+                                            <option value="ছোট">ছোট</option>
+                                            <option value="মাঝারি">মাঝারি</option>
+                                            <option value="বড়">বড়</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="stock-quantity" class="form-label">পরিমাণ (আনুমানিক কেজি)</label>
+                                        <input type="number" id="stock-quantity" class="form-input" placeholder="যেমন: 500">
+                                    </div>
+                                    <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                        স্টক সেভ করুন
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Current Stock Display -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-2xl font-semibold mb-4">বর্তমান মাছের স্টক</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th class="table-header">প্রজাতি</th>
+                                                <th class="table-header">সাইজ</th>
+                                                <th class="table-header">পরিমাণ (কেজি)</th>
+                                                <th class="table-header">শেষ আপডেট</th>
+                                                <th class="table-header">অ্যাকশন</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="stock-table-body" class="bg-white divide-y divide-gray-200">
+                                            <!-- Stock data will be inserted by JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Pond Accounting (Farmer only) -->
+                <div id="dash-tab-accounts" class="dashboard-tab-content hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Add Transaction Form -->
+                        <div class="lg:col-span-1">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-2xl font-semibold mb-4">নতুন লেনদেন যোগ করুন</h3>
+                                <form id="account-form" class="space-y-4">
+                                    <div>
+                                        <label for="acc-type" class="form-label">লেনদেনের ধরন</label>
+                                        <select id="acc-type" class="form-input">
+                                            <option value="ব্যয়">ব্যয় (Expense)</option>
+                                            <option value="আয়">আয় (Income)</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="acc-category" class="form-label">খাত</label>
+                                        <select id="acc-category" class="form-input">
+                                            <!-- Options will be loaded by JS -->
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="acc-amount" class="form-label">টাকার পরিমাণ</label>
+                                        <input type="number" id="acc-amount" class="form-input" placeholder="0.00">
+                                    </div>
+                                    <div>
+                                        <label for="acc-desc" class="form-label">বিবরণ (ঐচ্ছিক)</label>
+                                        <input type="text" id="acc-desc" class="form-input" placeholder="যেমন: ২ বস্তা ফিড">
+                                    </div>
+                                    <div>
+                                        <label for="acc-date" class="form-label">তারিখ</label>
+                                        <input type="date" id="acc-date" class="form-input">
+                                    </div>
+                                    <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                        সেভ করুন
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Transactions Display & Summary -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <!-- Summary -->
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                    <div class="bg-green-100 border border-green-300 p-4 rounded-lg text-center">
+                                        <h4 class="text-sm font-medium text-green-800">মোট আয়</h4>
+                                        <p id="total-income" class="text-2xl font-bold text-green-700">৳০.০০</p>
+                                    </div>
+                                    <div class="bg-red-100 border border-red-300 p-4 rounded-lg text-center">
+                                        <h4 class="text-sm font-medium text-red-800">মোট ব্যয়</h4>
+                                        <p id="total-expense" class="text-2xl font-bold text-red-700">৳০.০০</p>
+                                    </div>
+                                    <div class="bg-blue-100 border border-blue-300 p-4 rounded-lg text-center">
+                                        <h4 class="text-sm font-medium text-blue-800">বর্তমান ব্যালেন্স</h4>
+                                        <p id="total-balance" class="text-2xl font-bold text-blue-700">৳০.০০</p>
+                                    </div>
+                                </div>
+                                <!-- Transaction List -->
+                                <h3 class="text-2xl font-semibold mb-4">লেনদেনের তালিকা</h3>
+                                <div class="overflow-x-auto max-h-96">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50 sticky top-0">
+                                            <tr>
+                                                <th class="table-header">তারিখ</th>
+                                                <th class="table-header">খাত</th>
+                                                <th class="table-header">বিবরণ</th>
+                                                <th class="table-header">আয় (৳)</th>
+                                                <th class="table-header">ব্যয় (৳)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="account-table-body" class="bg-white divide-y divide-gray-200">
+                                            <!-- Transaction data will be inserted by JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab: Purchase Request (Seller only) -->
+                <div id="dash-tab-purchase" class="dashboard-tab-content hidden">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-semibold mb-4">চাষীদের স্টক দেখুন ও ক্রয়ের আবেদন করুন</h3>
+                        <!-- This would be a complex component showing available stock from farmers -->
+                        <p class="text-gray-600">এই ফিচারটি ব্যাকএন্ডের সাথে সংযুক্ত করা হবে। এখানে বিক্রেতারা সকল নিবন্ধিত চাষীদের বর্তমান স্টক দেখতে পাবেন এবং সরাসরি ক্রয়ের জন্য আবেদন করতে পারবেন।</p>
+                    </div>
+                </div>
+
+                <!-- Tab: Admin Panel (Admin only) -->
+                <div id="dash-tab-admin" class="dashboard-tab-content hidden">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-semibold mb-4">এডমিন প্যানেল</h3>
+                        <p class="text-gray-600">এই ফিচারটি ব্যাকএন্ডের সাথে সংযুক্ত করা হবে। এডমিন এখান থেকে ইউজার ম্যানেজমেন্ট, কন্টেন্ট আপডেট, বাজার দর ভেরিফাই এবং সিস্টেমের সকল কার্যক্রম নিয়ন্ত্রণ করতে পারবেন।</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12 p-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Fish Care Bangladesh. সকল স্বত্ব সংরক্ষিত।</p>
+            <p class="text-sm text-gray-400 mt-2">একটি টেকসই ও লাভজনক মৎস্য খামার গড়ার পথে আপনার বিশ্বস্ত সঙ্গী।</p>
+        </div>
+    </footer>
+
+    <!-- CSS Classes for dynamic elements -->
+    <style>
+        .form-input {
+            @apply w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-1 focus:ring-blue-500;
+        }
+        .form-label {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .quick-link-card {
+            @apply bg-white rounded-lg shadow-md p-6 text-center text-blue-700 hover:shadow-lg hover:bg-blue-50 transition-all duration-300;
+        }
+        .table-header {
+            @apply px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .table-cell {
+            @apply px-4 py-4 whitespace-nowrap text-sm text-gray-700;
+        }
+    </style>
+
+    <!-- Core JavaScript Logic -->
+    <script>
+        // --- MOCK DATABASE AND CONTENT ---
+
+        // 1. Location Data (Sample)
+        // In a real app, this would come from an API (GET /api/divisions, etc.)
+        const locations = {
+            divisions: [
+                { id: 1, name: "ঢাকা" },
+                { id: 2, name: "চট্টগ্রাম" },
+                { id: 3, name: "খুলনা" },
+                { id: 4, name: "রাজশাহী" },
+            ],
+            districts: [
+                { id: 101, division_id: 1, name: "ঢাকা" },
+                { id: 102, division_id: 1, name: "গাজীপুর" },
+                { id: 103, division_id: 1, name: "নারায়ণগঞ্জ" },
+                { id: 201, division_id: 2, name: "চট্টগ্রাম" },
+                { id: 202, division_id: 2, name: "কুমিল্লা" },
+                { id: 301, division_id: 3, name: "খুলনা" },
+                { id: 302, division_id: 3, name: "যশোর" },
+                { id: 303, division_id: 3, name: "সাতক্ষীরা" },
+                { id: 401, division_id: 4, name: "রাজশাহী" },
+                { id: 402, division_id: 4, name: "বগুড়া" },
+            ],
+            upazilas: [
+                { id: 10101, district_id: 101, name: "সাভার" },
+                { id: 10102, district_id: 101, name: "ধামরাই" },
+                { id: 10201, district_id: 102, name: "শ্রীপুর" },
+                { id: 10202, district_id: 102, name: "কালিয়াকৈর" },
+                { id: 10301, district_id: 103, name: "আড়াইহাজার" },
+                { id: 10302, district_id: 103, name: "সোনারগাঁও" },
+                { id: 30101, district_id: 301, name: "ডুমুরিয়া" },
+                { id: 30102, district_id: 301, name: "বটিয়াঘাটা" },
+                { id: 30201, district_id: 302, name: "অভয়নগর" },
+                { id: 30202, district_id: 302, name: "মণিরামপুর" },
+            ]
+        };
+
+        // 2. Mock Market Prices
+        // In a real app, this comes from GET /api/fish-prices?upazila_id={id}
+        const mockPrices = {
+            10301: { // আড়াইহাজার
+                location: "আড়াইহাজার, নারায়ণগঞ্জ",
+                date: "আজ সকাল ১০:৩০মি",
+                specialist: { name: "জনাব ইমরান হোসাইন", phone: "01978865277" },
+                prices: [
+                    { name: "রুই", min: 280, max: 330, avg: 305 },
+                    { name: "কাতলা", min: 260, max: 310, avg: 290 },
+                    { name: "তেলাপিয়া", min: 140, max: 170, avg: 155 },
+                    { name: "পাঙ্গাস", min: 120, max: 150, avg: 135 },
+                    { name: "গলদা (পিস)", min: 600, max: 900, avg: 750 },
+                ]
+            },
+            30101: { // ডুমুরিয়া
+                location: "ডুমুরিয়া, খুলনা",
+                date: "আজ সকাল ৯:৪৫মি",
+                specialist: { name: "জনাব আকবর আলী", phone: "01711XXXXXX" },
+                prices: [
+                    { name: "গলদা", min: 700, max: 1000, avg: 850 },
+                    { name: "বাগদা", min: 650, max: 900, avg: 775 },
+                    { name: "শিং", min: 400, max: 500, avg: 450 },
+                    { name: "পাঙ্গাস", min: 130, max: 160, avg: 145 },
+                ]
+            }
+        };
+
+        // 3. Farming Guides Content
+        const guidesContent = {
+            'carp-polyculture': {
+                title: "মিশ্র কার্প চাষ (Carp Polyculture)",
+                content: `
+                    <p class="mb-4"><strong>পরিচিতি:</strong> রুই, কাতলা, মৃগেল, সিলভার কার্প ইত্যাদি একসঙ্গে পালন করে পুকুরের সব স্তরের খাদ্য সম্পদের সর্বোত্তম ব্যবহার।</p>
+                    <h4 class="font-semibold text-lg mb-2">প্রয়োজনীয় শর্ত</h4>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li><strong>পুকুর:</strong> ৩–৬ ফুট গভীর, সূর্যালোক পৌঁছায় এমন।</li>
+                        <li><strong>পানি:</strong> pH 7.0–8.0; দ্রবীভূত অক্সিজেন (DO) ≥ 5 mg/L; অ্যামোনিয়া (NH3) ≤ 0.02 mg/L।</li>
+                        <li><strong>প্রস্তুতি:</strong> শুকানো/কাদা সরানো, চুন প্রয়োগ (pH অনুযায়ী), জৈব সার দিয়ে প্রাকৃতিক খাদ্য।</li>
+                    </ul>
+                    <h4 class="font-semibold text-lg mb-2">খাদ্য ব্যবস্থাপনা</h4>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li>প্রাকৃতিক ফাইটোপ্ল্যাঙ্কটন + পরিপূরক ফিড (ধানের কুঁড়া, সরিষার খৈল/পেলেট)।</li>
+                        <li>দৈনিক ফিড: মোট বায়োমাসের 1.5–3% (বয়স অনুযায়ী)।</li>
+                    </ul>
+                    <h4 class="font-semibold text-lg mb-2">আহরণ</h4>
+                    <p class="mb-4">আকার/বাজার চাহিদা অনুযায়ী ধাপে ধাপে (partial harvest) বা পূর্ণ আহরণ।</p>
+                    <h4 class="font-semibold text-lg mb-2">সাধারণ সমস্যা ও সমাধান</h4>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li><strong>শৈবাল বাড়তি:</strong> জল আদল, ছায়া নিয়ন্ত্রণ, সার কমানো।</li>
+                        <li><strong>অক্সিজেন ঘাটতি:</strong> ভোরে এয়ারেশন/পানি বদল।</li>
+                        <li><strong>পরজীবী:</strong> জাল টান, লবণ স্নান, বায়োসিকিউরিটি।</li>
+                    </ul>
+                `
+            },
+            'prawn-farming': {
+                title: "গলদা চিংড়ি চাষ (Giant Freshwater Prawn)",
+                content: `
+                    <p class="mb-4"><strong>পরিচিতি:</strong> মিঠা পানির উচ্চমূল্যের চিংড়ি; ধানক্ষেতেও সমন্বিত চাষ সম্ভব।</p>
+                    <h4 class="font-semibold text-lg mb-2">প্রয়োজনীয় শর্ত</h4>
+                    <p class="mb-4">মৃদু প্রবাহ, আশ্রয় উপকরণ (ঝোপ/বাঁশ), pH 7.2–8.2, DO ≥ 5 mg/L, তাপমাত্রা 26–31°C।</p>
+                    <h4 class="font-semibold text-lg mb-2">খাদ্য ব্যবস্থাপনা</h4>
+                    <p class="mb-4">প্রাকৃতিক খাদ্য + উচ্চ প্রোটিন ফিড (28–35%), দিনে 2–3 বার।</p>
+                    <h4 class="font-semibold text-lg mb-2">আহরণ</h4>
+                    <p class="mb-4">150–200 গ্রাম/পিস হলে বাছাই করে।</p>
+                    <h4 class="font-semibold text-lg mb-2">সমস্যা/সমাধান</h4>
+                    <p class="mb-4">কাঁকড়া/ব্যাঙ প্রতিরোধ, মোল্টিং সময়ে স্ট্রেস কমানো, খোলস নরম হলে মিনারেল সম্পূরক।</p>
+                `
+            },
+            'pangasius-farming': {
+                title: "পাঙ্গাস চাষ (Pangasius)",
+                content: `
+                    <p class="mb-4"><strong>পরিচিতি:</strong> দ্রুত বর্ধনশীল, ঘন চাষে লাভজনক।</p>
+                    <h4 class="font-semibold text-lg mb-2">প্রয়োজনীয় শর্ত</h4>
+                    <p class="mb-4">গভীর পুকুর (6–8 ফুট), DO ≥ 5 mg/L, বায়ুচলাচল সুবিধা।</p>
+                    <h4 class="font-semibold text-lg mb-2">খাদ্য ব্যবস্থাপনা</h4>
+                    <p class="mb-4">24–30% প্রোটিন ফিড; 2–3% বায়োমাস/দিন, 2 বেলা।</p>
+                    <h4 class="font-semibold text-lg mb-2">আহরণ</h4>
+                    <p class="mb-4">1.0–1.5 কেজি/পিস, 6–8 মাসে।</p>
+                    <h4 class="font-semibold text-lg mb-2">সমস্যা/সমাধান</h4>
+                    <p class="mb-4">অ্যামোনিয়া বেড়ে গেলে পানিবদল/বায়োফিল্টার; ঘন স্টকিংয়ে এয়ারেশন আবশ্যক।</p>
+                `
+            },
+            'tilapia-farming': {
+                title: "মনোসেক্স তেলাপিয়া (Monosex Tilapia)",
+                content: `
+                    <p class="mb-4"><strong>পরিচিতি:</strong> সমান হারে দ্রুত বৃদ্ধি, বাজার চাহিদা বেশি।</p>
+                    <h4 class="font-semibold text-lg mb-2">প্রয়োজনীয় শর্ত</h4>
+                    <p class="mb-4">pH 6.8–8.5, DO ≥ 5 mg/L, তাপমাত্রা 25–32°C।</p>
+                    <h4 class="font-semibold text-lg mb-2">খাদ্য ব্যবস্থাপনা</h4>
+                    <p class="mb-4">25–30% প্রোটিন; 2–3% বায়োমাস/দিন।</p>
+                    <h4 class="font-semibold text-lg mb-2">আহরণ</h4>
+                    <p class="mb-4">600–800 গ্রাম, 4–6 মাসে; ধারাবাহিক আকার বাছাই।</p>
+                    <h4 class="font-semibold text-lg mb-2">সমস্যা/সমাধান</h4>
+                    <p class="mb-4">অতিজনন রোধে মনোসেক্স পোনা, পানি ঘোলা হলে সেডিমেন্টেশন/জল আদল।</p>
+                `
+            },
+            'shing-farming': {
+                title: "শিং (Heteropneustes fossilis)",
+                content: `<p>... (বিস্তারিত কন্টেন্ট এখানে যোগ করতে হবে) ...</p>`
+            },
+            'koi-farming': {
+                title: "কই (Anabas testudineus)",
+                content: `<p>... (বিস্তারিত কন্টেন্ট এখানে যোগ করতে হবে) ...</p>`
+            },
+            'magur-farming': {
+                title: "মাগুর (Clarias batrachus)",
+                content: `<p>... (বিস্তারিত কন্টেন্ট এখানে যোগ করতে হবে) ...</p>`
+            },
+            'paddy-field-farming': {
+                title: "ধানক্ষেতে মাছ চাষ",
+                content: `<p>... (বিস্তারিত কন্টেন্ট এখানে যোগ করতে হবে) ...</p>`
+            },
+        };
+
+        // 4. Disease Management Content
+        const diseasesContent = {
+            'white-spot': {
+                title: "সাদা দাগ রোগ (Ich/White Spot)",
+                content: `
+                    <h4 class="font-semibold text-lg mb-2">লক্ষণ</h4>
+                    <p class="mb-4">শরীরে সাদা দানা, গা ঘষা, শ্বাসকষ্ট।</p>
+                    <h4 class="font-semibold text-lg mb-2">কারণ</h4>
+                    <p class="mb-4">Ichthyophthirius বহুকোষী পরজীবী; তাপমাত্রা ওঠানামা/স্ট্রেস।</p>
+                    <h4 class="font-semibold text-lg mb-2">প্রতিরোধ</h4>
+                    <p class="mb-4">নতুন পোনা কোয়ারেন্টাইন, জাল/সরঞ্জাম জীবাণুমুক্ত, ঘনত্ব নিয়ন্ত্রণ।</p>
+                    <h4 class="font-semibold text-lg mb-2">চিকিৎসা</h4>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li><strong>লবণ স্নান:</strong> 2–3 g/L, 5–10 মিনিট, এয়ারেশনসহ।</li>
+                        <li><strong>পটাশিয়াম পারম্যাঙ্গানেট (KMnO4):</strong> 2 mg/L পুরো পুকুরে বা 10 mg/L ডিপ 30–60 মিনিট; পানির রঙ/DO মনিটর।</li>
+                        <li><strong>নোট:</strong> রাসায়নিক ব্যবহারের আগে স্থানীয় নিয়ম যাচাই করুন; বিশেষজ্ঞের পরামর্শ নিন।</li>
+                    </ul>
+                `
+            },
+            'bacterial-ulcer': {
+                title: "মাছের ঘা/আলসার (Bacterial Ulcer)",
+                content: `
+                    <h4 class="font-semibold text-lg mb-2">লক্ষণ</h4>
+                    <p class="mb-4">লালচে ক্ষত, পচা আঁশ, ফিন ক্ষয়।</p>
+                    <h4 class="font-semibold text-lg mb-2">কারণ</h4>
+                    <p class="mb-4">Aeromonas, Pseudomonas ইত্যাদি; পানিদূষণ/আঘাত।</p>
+                    <h4 class="font-semibold text-lg mb-2">প্রতিরোধ</h4>
+                    <p class="mb-4">পানি মান, বায়োসিকিউরিটি, স্ট্রেস কমানো।</p>
+                    <h4 class="font-semibold text-lg mb-2">চিকিৎসা</h4>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li><strong>পানি উন্নয়ন:</strong> আংশিক পানিবদল, এয়ারেশন, জৈবলোড কমানো।</li>
+                        <li><strong>বহিঃপ্রয়োগ:</strong> বড় মাছ ধরলে পভিডোন আয়োডিন 10% দিয়ে ক্ষত পরিষ্কার।</li>
+                        <li><strong>ফিড-এন্টিবায়োটিক:</strong> ভেটেরিনারির পরামর্শে অক্সিটেট্রাসাইক্লিন 50–75 mg/kg মাছ/দিন 5–7 দিন বা স্থানীয়ভাবে অনুমোদিত বিকল্প। নিজে থেকে অ্যান্টিবায়োটিক ব্যবহার করবেন না।</li>
+                    </ul>
+                `
+            },
+            'fin-rot': {
+                title: "ফিন রট (Fin Rot)",
+                content: `<p>... (বিস্তারিত কন্টেন্ট এখানে যোগ করতে হবে) ...</p>`
+            },
+            'dropsy': {
+                title: "ড্রপসি (Dropsy)",
+                content: `<p>... (বিস্তারিত কন্টেন্ট এখানে যোগ করতে হবে) ...</p>`
+            },
+            'fish-lice': {
+                title: "মাছের জোঁক/আর্গুলাসিস (Fish Lice/Argulus)",
+                content: `<p>... (বিস্তারিত কন্টেন্ট এখানে যোগ করতে হবে) ...</p>`
+            },
+            'carp-ulcer': {
+                title: "সিলভার কার্পে আলসার",
+                content: `<p>... (বিস্তারিত কন্টেন্ট এখানে যোগ করতে হবে) ...</p>`
+            },
+        };
+        
+        // 5. Diagnostician Data
+        const symptomsData = [
+            { id: 's1', text: 'শরীরে সাদা দাগ', related: ['white-spot'] },
+            { id: 's2', text: 'মাছ খাবার খায় না', related: ['white-spot', 'bacterial-ulcer', 'dropsy'] },
+            { id: 's3', text: 'পাখনায় লাল দাগ/ক্ষয়', related: ['fin-rot', 'bacterial-ulcer'] },
+            { id: 's4', text: 'শরীরে লাল ঘা/গর্ত', related: ['bacterial-ulcer', 'carp-ulcer'] },
+            { id: 's5', text: 'মাছ শরীর ঘষে', related: ['white-spot', 'fish-lice'] },
+            { id: 's6', text: 'পেট অস্বাভাবিক ফুলে আছে', related: ['dropsy'] },
+            { id: 's7', text: 'গায়ে জোঁক/পোকা লেগে আছে', related: ['fish-lice'] },
+        ];
+        
+        // 6. Accounting Categories
+        const accountCategories = {
+            'আয়': [
+                'মাছ বিক্রি', 
+                'পুকুর পাড়ের অন্যান্য বিক্রি'
+            ],
+            'ব্যয়': [
+                'ওষধ', 
+                'মাছ ক্রয় (পোনা)', 
+                'খাবার', 
+                'বিদ্যুৎ বিল', 
+                'খনন', 
+                'মেরামত', 
+                'পাহারাদার', 
+                'অন্যান্য'
+            ]
+        };
+
+        // --- APPLICATION STATE ---
+        // Simulates the logged-in user and their data
+        let appState = {
+            isLoggedIn: false,
+            userType: null, // 'farmer', 'seller', 'admin'
+            username: null,
+            location: null, // Mock user location
+            stock: [
+                { id: 1, fish: "তেলাপিয়া", size: "বড়", qty: 350, updated: "2025-10-30" },
+                { id: 2, fish: "পাঙ্গাস", size: "মাঝারি", qty: 800, updated: "2025-10-28" }
+            ],
+            transactions: [
+                { id: 1, date: "2025-10-25", type: "ব্যয়", category: "খাবার", desc: "২ বস্তা ফিড", amount: 6000 },
+                { id: 2, date: "2025-10-26", type: "ব্যয়", category: "ওষধ", desc: "KMnO4", amount: 500 },
+                { id: 3, date: "2025-10-28", type: "আয়", category: "মাছ বিক্রি", desc: "তেলাপিয়া (খুচরা)", amount: 15000 },
+                { id: 4, date: "2025-10-30", type: "ব্যয়", category: "বিদ্যুৎ বিল", desc: "অক্টোবর বিল", amount: 1200 },
+            ]
+        };
+
+        // --- DOM Elements ---
+        const pageContainer = document.getElementById('app-container');
+        const allPages = document.querySelectorAll('.page-content');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // --- PAGE NAVIGATION ---
+        
+        /**
+         * Navigate to a specific page
+         * @param {string} pageId The ID of the page section to show
+         */
+        function navigateTo(pageId) {
+            allPages.forEach(page => {
+                page.classList.remove('active');
+            });
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            } else {
+                console.warn(`Page not found: ${pageId}`);
+                document.getElementById('page-home').classList.add('active'); // Fallback to home
+            }
+            window.scrollTo(0, 0); // Scroll to top
+            mobileMenu.classList.add('hidden'); // Hide mobile menu on navigation
+        }
+
+        /**
+         * Attach navigation listeners to links
+         */
+        function initNavigation() {
+            // Standard nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-nav');
+                    if (pageId === 'page-dashboard' && !appState.isLoggedIn) {
+                        navigateTo('page-login');
+                    } else {
+                        navigateTo(pageId);
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Listen for dynamic links (e.g., quick links)
+            pageContainer.addEventListener('click', (e) => {
+                const link = e.target.closest('[data-nav]');
+                if (link && navLinks.indexOf(link) === -1) { // Check if it's not a main nav link
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-nav');
+                    if (pageId === 'page-dashboard' && !appState.isLoggedIn) {
+                        navigateTo('page-login');
+                    } else {
+                        navigateTo(pageId);
+                    }
+                }
+            });
+        }
+
+        // --- AUTHENTICATION (SIMULATED) ---
+        
+        /**
+         * Initialize the login form
+         */
+        function initLogin() {
+            const loginForm = document.getElementById('login-form');
+            const loginError = document.getElementById('login-error');
+            
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                loginError.classList.add('hidden');
+                
+                const username = document.getElementById('login-username').value;
+                const role = document.getElementById('login-role').value;
+
+                // Simple mock login
+                if (username) {
+                    appState.isLoggedIn = true;
+                    appState.userType = role;
+                    appState.username = username;
+                    // Mock location for the user
+                    appState.location = "আড়াইহাজার, নারায়ণগঞ্জ";
+                    
+                    updateNavUI(true);
+                    initDashboard(); // Setup dashboard based on role
+                    navigateTo('page-dashboard');
+                } else {
+                    loginError.classList.remove('hidden');
+                }
+            });
+        }
+
+        /**
+         * Update nav UI based on login state
+         * @param {boolean} isLoggedIn
+         */
+        function updateNavUI(isLoggedIn) {
+            const loginLinks = ['nav-login', 'nav-login-mobile'];
+            const dashLinks = ['nav-dashboard', 'nav-dashboard-mobile'];
+
+            if (isLoggedIn) {
+                loginLinks.forEach(id => document.getElementById(id).classList.add('hidden'));
+                dashLinks.forEach(id => document.getElementById(id).classList.remove('hidden'));
+            } else {
+                loginLinks.forEach(id => document.getElementById(id).classList.remove('hidden'));
+                dashLinks.forEach(id => document.getElementById(id).classList.add('hidden'));
+            }
+        }
+        
+        // --- MARKET PRICE PAGE ---
+        
+        /**
+         * Initialize the market price page logic
+         */
+        function initMarketPage() {
+            const divisionSelect = document.getElementById('division-select');
+            const districtSelect = document.getElementById('district-select');
+            const upazilaSelect = document.getElementById('upazila-select');
+            const fetchBtn = document.getElementById('fetch-prices-btn');
+            
+            // 1. Populate Divisions
+            locations.divisions.forEach(div => {
+                divisionSelect.innerHTML += `<option value="${div.id}">${div.name}</option>`;
+            });
+
+            // 2. On Division change
+            divisionSelect.addEventListener('change', () => {
+                const divId = parseInt(divisionSelect.value);
+                districtSelect.innerHTML = '<option value="">-- জেলা বাছুন --</option>';
+                upazilaSelect.innerHTML = '<option value="">-- উপজেলা বাছুন --</option>';
+                districtSelect.disabled = true;
+                upazilaSelect.disabled = true;
+                fetchBtn.disabled = true;
+
+                if (divId) {
+                    const districts = locations.districts.filter(d => d.division_id === divId);
+                    districts.forEach(dist => {
+                        districtSelect.innerHTML += `<option value="${dist.id}">${dist.name}</option>`;
+                    });
+                    districtSelect.disabled = false;
+                }
+            });
+
+            // 3. On District change
+            districtSelect.addEventListener('change', () => {
+                const distId = parseInt(districtSelect.value);
+                upazilaSelect.innerHTML = '<option value="">-- উপজেলা বাছুন --</option>';
+                upazilaSelect.disabled = true;
+                fetchBtn.disabled = true;
+
+                if (distId) {
+                    const upazilas = locations.upazilas.filter(u => u.district_id === distId);
+                    upazilas.forEach(upa => {
+                        upazilaSelect.innerHTML += `<option value="${upa.id}">${upa.name}</option>`;
+                    });
+                    upazilaSelect.disabled = false;
+                }
+            });
+            
+            // 4. On Upazila change
+            upazilaSelect.addEventListener('change', () => {
+                fetchBtn.disabled = !upazilaSelect.value;
+            });
+            
+            // 5. On Button click
+            fetchBtn.addEventListener('click', showMarketPrices);
+        }
+        
+        /**
+         * Fetch and display mock market prices
+         */
+        function showMarketPrices() {
+            const upazilaId = document.getElementById('upazila-select').value;
+            const priceDisplay = document.getElementById('price-display-area');
+            const noDataDisplay = document.getElementById('no-price-data');
+            const tableBody = document.getElementById('price-table-body');
+            
+            const data = mockPrices[upazilaId];
+            
+            if (data) {
+                document.getElementById('selected-location-name').textContent = data.location;
+                document.getElementById('update-time').textContent = data.date;
+                document.getElementById('specialist-name').textContent = data.specialist.name;
+                document.getElementById('specialist-phone').textContent = data.specialist.phone;
+                
+                tableBody.innerHTML = ''; // Clear old data
+                data.prices.forEach(fish => {
+                    tableBody.innerHTML += `
+                        <tr class="hover:bg-gray-50">
+                            <td class="table-cell font-medium">${fish.name}</td>
+                            <td class="table-cell">${fish.min}</td>
+                            <td class="table-cell">${fish.max}</td>
+                            <td class="table-cell font-semibold">${fish.avg}</td>
+                        </tr>
+                    `;
+                });
+                
+                priceDisplay.classList.remove('hidden');
+                noDataDisplay.classList.add('hidden');
+            } else {
+                priceDisplay.classList.add('hidden');
+                noDataDisplay.classList.remove('hidden');
+            }
+        }
+        
+        // --- FARMING GUIDES PAGE ---
+
+        /**
+         * Initialize the farming guides list and detail view
+         */
+        function initGuidesPage() {
+            const listContainer = document.querySelector('#page-guides-list .grid');
+            listContainer.innerHTML = ''; // Clear
+            
+            Object.keys(guidesContent).forEach(key => {
+                const guide = guidesContent[key];
+                listContainer.innerHTML += `
+                    <a href="#" data-guide-key="${key}" class="quick-link-card text-left">
+                        <h3 class="font-semibold text-lg">${guide.title}</h3>
+                        <p class="text-sm text-gray-600 mt-2">বিস্তারিত দেখুন &rarr;</p>
+                    </a>
+                `;
+            });
+            
+            // Add click listener for detail view
+            listContainer.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = e.target.closest('[data-guide-key]');
+                if (card) {
+                    const key = card.getAttribute('data-guide-key');
+                    showGuideDetail(key);
+                }
+            });
+        }
+        
+        /**
+         * Show the detail page for a specific guide
+         * @param {string} guideKey The key from the guidesContent object
+         */
+        function showGuideDetail(guideKey) {
+            const guide = guidesContent[guideKey];
+            if (guide) {
+                document.getElementById('guide-detail-title').textContent = guide.title;
+                document.getElementById('guide-detail-content').innerHTML = guide.content;
+                navigateTo('page-guide-detail');
+            }
+        }
+        
+        // --- DISEASE MANAGEMENT PAGE ---
+        
+        /**
+         * Initialize the disease management tabs
+         */
+        function initDiseasesPage() {
+            const tabsContainer = document.getElementById('disease-tabs');
+            const contentContainer = document.getElementById('disease-content-area');
+            tabsContainer.innerHTML = '';
+            contentContainer.innerHTML = '';
+            
+            let isFirstTab = true;
+            Object.keys(diseasesContent).forEach(key => {
+                const disease = diseasesContent[key];
+                const isActive = isFirstTab;
+                
+                // Create Tab
+                tabsContainer.innerHTML += `
+                    <button data-disease-key="${key}" class="disease-tab py-3 px-1 border-b-2 text-sm md:text-base
+                        ${isActive ? 'tab-active border-blue-600 text-blue-600 font-semibold' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}">
+                        ${disease.title.split(' (')[0]}
+                    </button>
+                `;
+                
+                // Create Content Panel
+                contentContainer.innerHTML += `
+                    <div id="disease-content-${key}" class="disease-content-panel ${isActive ? '' : 'hidden'}">
+                        <h3 class="text-2xl font-bold mb-4">${disease.title}</h3>
+                        <div class="prose max-w-none text-gray-700 leading-relaxed">${disease.content}</div>
+                    </div>
+                `;
+                isFirstTab = false;
+            });
+            
+            // Add tab click listener
+            tabsContainer.addEventListener('click', (e) => {
+                const tab = e.target.closest('.disease-tab');
+                if (tab) {
+                    // Deactivate all
+                    document.querySelectorAll('.disease-tab').forEach(t => t.classList.remove('tab-active'));
+                    document.querySelectorAll('.disease-content-panel').forEach(p => p.classList.add('hidden'));
+                    
+                    // Activate clicked
+                    tab.classList.add('tab-active');
+                    const key = tab.getAttribute('data-disease-key');
+                    document.getElementById(`disease-content-${key}`).classList.remove('hidden');
+                }
+            });
+        }
+        
+        // --- DISEASE DIAGNOSTICIAN ---
+        
+        /**
+         * Initialize the diagnostician tool
+         */
+        function initDiagnostician() {
+            const symptomsList = document.getElementById('symptoms-list');
+            symptomsList.innerHTML = '';
+            
+            symptomsData.forEach(symptom => {
+                symptomsList.innerHTML += `
+                    <label class="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-50">
+                        <input type="checkbox" value="${symptom.id}" class="symptom-check rounded text-blue-600">
+                        <span>${symptom.text}</span>
+                    </label>
+                `;
+            });
+            
+            document.getElementById('diagnose-btn').addEventListener('click', runDiagnosis);
+        }
+        
+        /**
+         * Run the diagnosis based on selected symptoms
+         */
+        function runDiagnosis() {
+            const selectedChecks = document.querySelectorAll('.symptom-check:checked');
+            const resultsContainer = document.getElementById('diagnose-results');
+            const outputContainer = document.getElementById('diagnose-output');
+            outputContainer.innerHTML = '';
+            
+            if (selectedChecks.length === 0) {
+                outputContainer.innerHTML = '<p class="text-red-600">অনুগ্রহ করে কমপক্ষে একটি লক্ষণ বাছাই করুন।</p>';
+                resultsContainer.classList.remove('hidden');
+                return;
+            }
+            
+            let symptomIds = [];
+            selectedChecks.forEach(chk => symptomIds.push(chk.value));
+            
+            // Simple diagnosis logic (counting matches)
+            let diagnosisScores = {};
+            symptomIds.forEach(id => {
+                const symptom = symptomsData.find(s => s.id === id);
+                if (symptom) {
+                    symptom.related.forEach(diseaseKey => {
+                        if (!diagnosisScores[diseaseKey]) {
+                            diagnosisScores[diseaseKey] = 0;
+                        }
+                        diagnosisScores[diseaseKey]++;
+                    });
+                }
+            });
+
+            // Sort by score
+            const sortedDiagnosis = Object.entries(diagnosisScores).sort(([,a],[,b]) => b-a);
+
+            if (sortedDiagnosis.length > 0) {
+                sortedDiagnosis.forEach(([key, score]) => {
+                    const disease = diseasesContent[key];
+                    if (disease) {
+                        outputContainer.innerHTML += `
+                            <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                                <h4 class="text-xl font-semibold text-red-700">${disease.title}</h4>
+                                <p class="text-sm text-gray-600 mb-2">(সম্ভাবনা: ${score * (100 / selectedChecks.length)}% ভিত্তিক)</p>
+                                <p class="font-semibold mt-2">প্রাথমিক করণীয়:</p>
+                                ${disease.content} <!-- In real app, show a summary -->
+                            </div>
+                        `;
+                    }
+                });
+            } else {
+                outputContainer.innerHTML = '<p>আপনার দেওয়া লক্ষণের সাথে মিল আছে এমন কোনো সাধারণ রোগ তথ্যভান্ডারে পাওয়া যায়নি। অনুগ্রহ করে একজন বিশেষজ্ঞের সাথে যোগাযোগ করুন।</p>';
+            }
+            
+            resultsContainer.classList.remove('hidden');
+        }
+        
+        // --- POND CALCULATOR ---
+        
+        /**
+         * Initialize the pond calculator
+         */
+        function initCalculator() {
+            document.getElementById('calculate-pond-btn').addEventListener('click', calculatePond);
+        }
+        
+        /**
+         * Perform pond calculations
+         */
+        function calculatePond() {
+            const length = parseFloat(document.getElementById('pond-length').value) || 0;
+            const width = parseFloat(document.getElementById('pond-width').value) || 0;
+            const depth = parseFloat(document.getElementById('pond-depth').value) || 0;
+            const ph = parseFloat(document.getElementById('pond-ph').value) || 0;
+            const biomass = parseFloat(document.getElementById('pond-biomass').value) || 0;
+            
+            const resultsContainer = document.getElementById('calculator-results');
+            const outputContainer = document.getElementById('calc-output-area');
+            outputContainer.innerHTML = '';
+
+            if (length === 0 || width === 0 || depth === 0) {
+                outputContainer.innerHTML = '<p class="text-red-600">অনুগ্রহ করে পুকুরের দৈর্ঘ্য, প্রস্থ এবং গড় গভীরতা দিন।</p>';
+                resultsContainer.classList.remove('hidden');
+                return;
+            }
+
+            const areaM2 = length * width;
+            const volumeM3 = areaM2 * depth;
+            const areaDecimal = areaM2 / 40.4686; // 1 Decimal ≈ 40.47 m²
+            const areaBigha = areaM2 / 1337.8;   // 1 Bigha (standard) ≈ 1337.8 m²
+            
+            let resultsHTML = `
+                <p><strong>পুকুরের আয়তন:</strong> ${areaM2.toFixed(2)} মি²</p>
+                <p><strong>আয়তন (ডেসিমেল):</strong> ${areaDecimal.toFixed(2)} ডেসিমেল</p>
+                <p><strong>আয়তন (বিঘা):</strong> ${areaBigha.toFixed(2)} বিঘা</p>
+                <p><strong>পানির ভলিউম:</strong> ${volumeM3.toFixed(2)} মি³ (${(volumeM3 * 1000).toFixed(0)} লিটার)</p>
+            `;
+            
+            // Stocking (per Bigha, then multiplied)
+            resultsHTML += `<hr class="my-3"> <h5 class="font-semibold">স্টকিং ডেনসিটি (প্রতি বিঘা)</h5>`;
+            resultsHTML += `<ul class="list-disc list-inside text-sm">
+                <li><strong>মিশ্র কার্প:</strong> ${Math.round(1500 * areaBigha)} - ${Math.round(2000 * areaBigha)} টি পোনা</li>
+                <li><strong>মনোসেক্স তেলাপিয়া:</strong> ${Math.round(3300 * areaBigha)} - ${Math.round(5000 * areaBigha)} টি পোনা</li>
+                <li><strong>পাঙ্গাস (সেমি-ইনটেনসিভ):</strong> ${Math.round(6600 * areaBigha)} - ${Math.round(10000 * areaBigha)} টি পোনা (এয়ারেশন আবশ্যক)</li>
+            </ul>`;
+
+            // Lime calculation
+            if (ph > 0) {
+                let limeKg = 0;
+                if (ph < 6.5) limeKg = 150 * areaBigha;
+                else if (ph >= 6.5 && ph <= 7.5) limeKg = 80 * areaBigha;
+                else limeKg = 40 * areaBigha;
+                
+                resultsHTML += `<hr class="my-3"> <h5 class="font-semibold">চুন প্রয়োগ (মোট)</h5>`;
+                resultsHTML += `<p>আপনার পুকুরের pH (${ph}) অনুযায়ী, আনুমানিক <strong>${limeKg.toFixed(1)} কেজি</strong> চুন প্রয়োগের প্রয়োজন হতে পারে।</p>`;
+            }
+            
+            // Feed calculation
+            if (biomass > 0) {
+                const feedMin = biomass * 0.015; // 1.5%
+                const feedMax = biomass * 0.03;  // 3.0%
+                resultsHTML += `<hr class="my-3"> <h5 class="font-semibold">দৈনিক ফিড ক্যালকুলেশন</h5>`;
+                resultsHTML += `<p>বর্তমান বায়োমাস (${biomass} কেজি) অনুযায়ী, গ্রো-আউট স্টেজে দৈনিক <strong>${feedMin.toFixed(1)} কেজি</strong> থেকে <strong>${feedMax.toFixed(1)} কেজি</strong> ফিডের প্রয়োজন হতে পারে।</p>`;
+            }
+            
+            outputContainer.innerHTML = resultsHTML;
+            resultsContainer.classList.remove('hidden');
+        }
+        
+        // --- DASHBOARD ---
+        
+        /**
+         * Initialize the dashboard based on user role
+         */
+        function initDashboard() {
+            if (!appState.isLoggedIn) return;
+            
+            const tabsContainer = document.getElementById('dashboard-tabs');
+            const userRoleDisplay = document.getElementById('user-role-display');
+            tabsContainer.innerHTML = '';
+            
+            // Show tabs based on role
+            if (appState.userType === 'farmer') {
+                userRoleDisplay.textContent = 'চাষী';
+                tabsContainer.innerHTML = `
+                    <button data-dash-tab="dash-tab-accounts" class="dashboard-tab tab-active py-3 px-1 border-b-2">আয়-ব্যয় হিসাব</button>
+                    <button data-dash-tab="dash-tab-stock" class="dashboard-tab py-3 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700">স্টক ম্যানেজমেন্ট</button>
+                    <button data-dash-tab="dash-tab-market" class="dashboard-tab py-3 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700">বাজার দর আপডেট</button>
+                `;
+                initFarmerDashboard();
+                switchDashboardTab('dash-tab-accounts');
+            } 
+            else if (appState.userType === 'seller') {
+                userRoleDisplay.textContent = 'বিক্রেতা';
+                tabsContainer.innerHTML = `
+                    <button data-dash-tab="dash-tab-purchase" class="dashboard-tab tab-active py-3 px-1 border-b-2">ক্রয়ের আবেদন</button>
+                    <button data-dash-tab="dash-tab-market" class="dashboard-tab py-3 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700">বাজার দর আপডেট</button>
+                `;
+                initSellerDashboard();
+                switchDashboardTab('dash-tab-purchase');
+            } 
+            else if (appState.userType === 'admin') {
+                userRoleDisplay.textContent = 'এডমিন';
+                tabsContainer.innerHTML = `
+                    <button data-dash-tab="dash-tab-admin" class="dashboard-tab tab-active py-3 px-1 border-b-2">এডমিন প্যানেল</button>
+                    <button data-dash-tab="dash-tab-market" class="dashboard-tab py-3 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700">বাজার দর আপডেট</button>
+                `;
+                initAdminDashboard();
+                switchDashboardTab('dash-tab-admin');
+            }
+            
+            // Add tab click listener
+            tabsContainer.addEventListener('click', (e) => {
+                const tab = e.target.closest('.dashboard-tab');
+                if (tab) {
+                    const tabId = tab.getAttribute('data-dash-tab');
+                    switchDashboardTab(tabId);
+                }
+            });
+            
+            // Setup Market Update tab
+            document.getElementById('user-location-display').textContent = appState.location || "N/A";
+        }
+        
+        /**
+         * Switch dashboard tabs
+         * @param {string} tabId The ID of the tab content to show
+         */
+        function switchDashboardTab(tabId) {
+            document.querySelectorAll('.dashboard-tab').forEach(t => t.classList.remove('tab-active'));
+            document.querySelectorAll('.dashboard-tab-content').forEach(p => p.classList.add('hidden'));
+            
+            const activeTab = document.querySelector(`.dashboard-tab[data-dash-tab="${tabId}"]`);
+            const activePanel = document.getElementById(tabId);
+            
+            if (activeTab) activeTab.classList.add('tab-active');
+            if (activePanel) activePanel.classList.remove('hidden');
+        }
+        
+        /**
+         * Initialize functions specific to Farmer dashboard
+         */
+        function initFarmerDashboard() {
+            // 1. Stock Management
+            const stockForm = document.getElementById('stock-form');
+            stockForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newStock = {
+                    id: Date.now(),
+                    fish: document.getElementById('stock-fish-type').value,
+                    size: document.getElementById('stock-fish-size').value,
+                    qty: parseFloat(document.getElementById('stock-quantity').value),
+                    updated: new Date().toISOString().split('T')[0]
+                };
+                // In a real app, POST to /api/farmer/stock
+                appState.stock.push(newStock);
+                renderStockTable();
+                stockForm.reset();
+            });
+            renderStockTable();
+            
+            // 2. Accounting
+            const accForm = document.getElementById('account-form');
+            const accTypeSelect = document.getElementById('acc-type');
+            const accCategorySelect = document.getElementById('acc-category');
+            
+            // Populate categories based on type
+            accTypeSelect.addEventListener('change', () => {
+                const type = accTypeSelect.value;
+                accCategorySelect.innerHTML = '';
+                accountCategories[type].forEach(cat => {
+                    accCategorySelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+                });
+            });
+            accTypeSelect.dispatchEvent(new Event('change')); // Trigger initial population
+            
+            // Set default date
+            document.getElementById('acc-date').value = new Date().toISOString().split('T')[0];
+
+            // Handle form submit
+            accForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newTrans = {
+                    id: Date.now(),
+                    date: document.getElementById('acc-date').value,
+                    type: document.getElementById('acc-type').value,
+                    category: document.getElementById('acc-category').value,
+                    desc: document.getElementById('acc-desc').value,
+                    amount: parseFloat(document.getElementById('acc-amount').value)
+                };
+                // In a real app, POST to /api/pond/accounts
+                appState.transactions.push(newTrans);
+                renderAccountTable();
+                accForm.reset();
+                document.getElementById('acc-date').value = new Date().toISOString().split('T')[0];
+            });
+            renderAccountTable();
+        }
+        
+        /**
+         * Render the stock table from appState
+         */
+        function renderStockTable() {
+            const tableBody = document.getElementById('stock-table-body');
+            tableBody.innerHTML = '';
+            appState.stock.forEach(item => {
+                tableBody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="table-cell">${item.fish}</td>
+                        <td class="table-cell">${item.size}</td>
+                        <td class="table-cell">${item.qty}</td>
+                        <td class="table-cell">${item.updated}</td>
+                        <td class="table-cell">
+                            <button class="text-red-600 hover:text-red-800 text-sm">মুছুন</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+        
+        /**
+         * Render the accounting table and summary from appState
+         */
+        function renderAccountTable() {
+            const tableBody = document.getElementById('account-table-body');
+            tableBody.innerHTML = '';
+            
+            let totalIncome = 0;
+            let totalExpense = 0;
+            
+            // Sort by date descending
+            const sortedTransactions = [...appState.transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            sortedTransactions.forEach(item => {
+                let income = '';
+                let expense = '';
+                if (item.type === 'আয়') {
+                    income = `৳${item.amount.toFixed(2)}`;
+                    totalIncome += item.amount;
+                } else {
+                    expense = `৳${item.amount.toFixed(2)}`;
+                    totalExpense += item.amount;
+                }
+                
+                tableBody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="table-cell">${item.date}</td>
+                        <td class="table-cell">${item.category}</td>
+                        <td class="table-cell">${item.desc}</td>
+                        <td class="table-cell text-green-600 font-medium">${income}</td>
+                        <td class="table-cell text-red-600 font-medium">${expense}</td>
+                    </tr>
+                `;
+            });
+            
+            // Update summary
+            const balance = totalIncome - totalExpense;
+            document.getElementById('total-income').textContent = `৳${totalIncome.toFixed(2)}`;
+            document.getElementById('total-expense').textContent = `৳${totalExpense.toFixed(2)}`;
+            document.getElementById('total-balance').textContent = `৳${balance.toFixed(2)}`;
+            
+            if (balance < 0) {
+                document.getElementById('total-balance').classList.remove('text-blue-700');
+                document.getElementById('total-balance').classList.add('text-red-700');
+            } else {
+                document.getElementById('total-balance').classList.add('text-blue-700');
+                document.getElementById('total-balance').classList.remove('text-red-700');
+            }
+        }
+        
+        /**
+         * Initialize functions specific to Seller dashboard
+         */
+        function initSellerDashboard() {
+            // Logic for purchase requests would go here
+        }
+        
+        /**
+         * Initialize functions specific to Admin dashboard
+         */
+        function initAdminDashboard() {
+            // Logic for admin panel would go here
+        }
+
+        // --- CONTACT FORM ---
+        function initContactForm() {
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('contact-success');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // In a real app, send this data to a backend
+                console.log('Contact form submitted');
+                successMsg.classList.remove('hidden');
+                form.reset();
+                setTimeout(() => successMsg.classList.add('hidden'), 3000);
+            });
+        }
+
+
+        // --- INITIALIZATION ---
+        
+        /**
+         * Run all initialization functions when the DOM is loaded
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            initNavigation();
+            initLogin();
+            initMarketPage();
+            initGuidesPage();
+            initDiseasesPage();
+            initDiagnostician();
+            initCalculator();
+            initContactForm();
+            
+            // Start at the home page
+            navigateTo('page-home');
+        });
+
+    </script>
+
+</body>
+</html>
+
